@@ -1,0 +1,74 @@
+{
+  "issues": [
+    {
+      "id": "1",
+      "title": "Login page validation error",
+      "description": "Fix incorrect validation on login form",
+      "status": "in_progress",
+      "priority": "high",
+      "assignee": "John Doe",
+      "createdAt": "2025-08-01T12:00:00Z",
+      "updatedAt": "2025-08-17T15:16:20.144Z"
+    },
+    {
+      "id": "2",
+      "title": "Navbar responsiveness issue",
+      "description": "Navbar items overlap on mobile view.",
+      "status": "in_progress",
+      "priority": "medium",
+      "assignee": "Jane Smith",
+      "createdAt": "2025-08-03T09:15:00Z",
+      "updatedAt": "2025-08-04T14:45:00Z"
+    },
+    {
+      "id": "3",
+      "title": "Improve dashboard performance",
+      "description": "Optimize API calls and reduce load time.",
+      "status": "done",
+      "priority": "medium",
+      "assignee": "Ali Hassan",
+      "createdAt": "2025-08-05T10:00:00Z",
+      "updatedAt": "2025-08-17T15:17:20.804Z"
+    },
+    {
+      "id": "4",
+      "title": "Add dark mode feature",
+      "description": "Provide toggle to switch between light and dark themes.",
+      "status": "todo",
+      "priority": "medium",
+      "assignee": "ASD",
+      "createdAt": "2025-08-07T11:10:00Z",
+      "updatedAt": "2025-08-17T15:27:41.237Z"
+    },
+    {
+      "id": "5",
+      "title": "Fix broken image links",
+      "description": "Some product images are not loading correctly.",
+      "status": "in_progress",
+      "priority": "high",
+      "assignee": "Sara Ali",
+      "createdAt": "2025-08-08T15:00:00Z",
+      "updatedAt": "2025-08-09T09:30:00Z"
+    },
+    {
+      "id": "f648",
+      "title": "asa",
+      "description": "dasd",
+      "status": "in_progress",
+      "priority": "medium",
+      "assignee": "adasd",
+      "createdAt": "2025-08-19T06:31:09.265Z",
+      "updatedAt": "2025-08-19T06:31:09.266Z"
+    },
+    {
+      "id": "8d3c",
+      "title": "srfs",
+      "description": "sdffffffffffffffffffffff sdddddddddddddddddddddddddd sdvvvvvvvvvvvvvvvvvvvvvvvvvvvvv vvvvvvvvvvvvvvvvs ddddddddddddddddddddddddd dddddddddddddddddd",
+      "status": "todo",
+      "priority": "medium",
+      "assignee": "sads",
+      "createdAt": "2025-08-19T15:31:33.801Z",
+      "updatedAt": "2025-08-19T15:31:33.801Z"
+    }
+  ]
+}

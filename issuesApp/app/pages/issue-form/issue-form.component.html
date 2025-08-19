@@ -1,0 +1,96 @@
+<div class="issue-form-container">
+      <header class="form-header">
+        <button mat-button (click)="goBack()" class="back-btn">
+          <mat-icon>arrow_back</mat-icon>
+          Back
+        </button>
+        <h1>{{ isEditMode() ? 'Edit Issue' : 'Create New Issue' }}</h1>
+      </header>
+
+      @if (loading()) {
+        <div class="loading-container">
+          <mat-spinner></mat-spinner>
+          <p>Loading issue...</p>
+        </div>
+      } @else if (error()) {
+        <div class="error-container">
+          <mat-icon color="warn">error</mat-icon>
+          <p>{{ error() }}</p>
+          <button mat-button color="primary" type="button" (click)="retryLoad()">Retry</button>
+        </div>
+      } @else {
+        <mat-card class="issue-form-card">
+          <form [formGroup]="issueForm" (ngSubmit)="onSubmit()">
+            <h2>{{ isEditMode() ? 'Edit Issue' : 'Create Issue' }}</h2>
+
+            <div *ngIf="loading()" class="loading-container">
+              <mat-spinner></mat-spinner>
+              <p>Loading issue...</p>
+            </div>
+
+            <div *ngIf="error()" class="error-container">
+              <mat-icon color="warn">error</mat-icon>
+              <p>{{ error() }}</p>
+              <button mat-button color="primary" type="button" (click)="retryLoad()">Retry</button>
+            </div>
+
+            <div *ngIf="!loading() && !error()">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Title</mat-label>
+                <input matInput formControlName="title" [attr.aria-describedby]="getTitleErrorId()" required>
+                <mat-error *ngIf="issueForm.get('title')?.invalid && issueForm.get('title')?.touched" [id]="getTitleErrorId()">
+                  Title is required (3-100 characters).
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Description</mat-label>
+                <textarea matInput formControlName="description" rows="4" [attr.aria-describedby]="getDescriptionErrorId()"></textarea>
+                <mat-error *ngIf="issueForm.get('description')?.invalid && issueForm.get('description')?.touched" [id]="getDescriptionErrorId()">
+                  Description must be less than 1000 characters.
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Status</mat-label>
+                <mat-select formControlName="status" [attr.aria-describedby]="getStatusErrorId()">
+                  <mat-option value="todo">To Do</mat-option>
+                  <mat-option value="in_progress">In Progress</mat-option>
+                  <mat-option value="done">Done</mat-option>
+                </mat-select>
+                <mat-error *ngIf="issueForm.get('status')?.invalid && issueForm.get('status')?.touched" [id]="getStatusErrorId()">
+                  Status is required.
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Priority</mat-label>
+                <mat-select formControlName="priority" [attr.aria-describedby]="getPriorityErrorId()">
+                  <mat-option value="low">Low</mat-option>
+                  <mat-option value="medium">Medium</mat-option>
+                  <mat-option value="high">High</mat-option>
+                </mat-select>
+                <mat-error *ngIf="issueForm.get('priority')?.invalid && issueForm.get('priority')?.touched" [id]="getPriorityErrorId()">
+                  Priority is required.
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Assignee</mat-label>
+                <input matInput formControlName="assignee" [attr.aria-describedby]="getAssigneeErrorId()" required>
+                <mat-error *ngIf="issueForm.get('assignee')?.invalid && issueForm.get('assignee')?.touched" [id]="getAssigneeErrorId()">
+                  Assignee is required (2-50 characters).
+                </mat-error>
+              </mat-form-field>
+
+              <div class="form-actions">
+                <button mat-raised-button color="primary" type="submit" [disabled]="submitting() || loading() || !issueForm.valid">
+                  {{ isEditMode() ? 'Update Issue' : 'Create Issue' }}
+                </button>
+                <button mat-button type="button" (click)="goBack()">Cancel</button>
+              </div>
+            </div>
+          </form>
+        </mat-card>
+      }
+    </div>

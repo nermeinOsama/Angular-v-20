@@ -1,0 +1,178 @@
+.issues-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
+  .page-header h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+    color: #0F172A;
+  }
+
+  .create-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .filters-section {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+  }
+
+  .search-field {
+    flex: 1;
+    min-width: 300px;
+  }
+
+  .status-filter {
+    min-width: 200px;
+  }
+
+  .loading-container,
+  .error-container,
+  .empty-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    text-align: center;
+  }
+
+  .loading-container p,
+  .error-container p,
+  .empty-container p {
+    margin: 16px 0;
+    color: #475569;
+  }
+
+  .empty-container mat-icon {
+    font-size: 64px;
+    width: 64px;
+    height: 64px;
+    color: #CBD5E1;
+    margin-bottom: 16px;
+  }
+
+  .error-container mat-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 16px;
+  }
+
+  .issues-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    align-items: stretch; // Ensures all grid items stretch to the same height
+  }
+
+  .issue-card {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    height: 100%; // Make each card fill the grid row height
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .issue-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .issue-description {
+    margin: 16px 0;
+    color: #475569;
+    line-height: 1.5;
+  }
+
+  .issue-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .issue-dates {
+    color: #64748B;
+    font-size: 12px;
+  }
+
+  /* Status chips */
+  .status-todo {
+    background-color: #F1F5F9;
+    color: #475569;
+  }
+
+  .status-in_progress {
+    background-color: #FEF3C7;
+    color: #92400E;
+  }
+
+  .status-done {
+    background-color: #D1FAE5;
+    color: #065F46;
+  }
+
+  /* Priority chips */
+  .priority-low {
+    background-color: #F0F9FF;
+    color: #0369A1;
+  }
+
+  .priority-medium {
+    background-color: #FEF3C7;
+    color: #92400E;
+  }
+
+  .priority-high {
+    background-color: #FEE2E2;
+    color: #DC2626;
+  }
+
+  /* Responsive design */
+  @media (max-width: 600px) {
+    .issues-container {
+      padding: 16px;
+    }
+
+    .page-header {
+      flex-direction: column;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .filters-section {
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .search-field,
+    .status-filter {
+      min-width: unset;
+    }
+
+    .issues-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+
+  @media (min-width: 600px) and (max-width: 1024px) {
+    .issues-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }

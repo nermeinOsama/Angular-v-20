@@ -1,0 +1,89 @@
+<div class="issues-container">
+  <header class="page-header">
+    <h1>Issues</h1>
+    <button mat-raised-button color="primary" routerLink="/issues/new" class="create-btn">
+      <mat-icon>add</mat-icon>
+      Create Issue
+    </button>
+  </header>
+
+  <div class="filters-section">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search issues</mat-label>
+      <input 
+        matInput 
+        [value]="searchTerm()" 
+        (input)="onSearchChange($event)"
+        placeholder="Search by title..."
+        aria-label="Search issues by title">
+      <mat-icon matSuffix>search</mat-icon>
+      @if (searchTerm()) {
+        <button matSuffix mat-icon-button (click)="clearSearch()" aria-label="Clear search">
+          <mat-icon>clear</mat-icon>
+        </button>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="status-filter">
+      <mat-label>Filter by status</mat-label>
+      <mat-select [value]="statusFilter()" (selectionChange)="statusFilter.set($event.value);">
+        <mat-option value="">All Status</mat-option>
+        <mat-option value="todo">To Do</mat-option>
+        <mat-option value="in_progress">In Progress</mat-option>
+        <mat-option value="done">Done</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  @if (globalLoading()) {
+    <div class="loading-container">
+      <mat-spinner></mat-spinner>
+      <p>Loading issues...</p>
+    </div>
+  } @else if (error()) {
+    <div class="error-container">
+      <mat-icon color="warn">error</mat-icon>
+      <p>{{ error() }}</p>
+      <button mat-button color="primary" (click)="retryLoad()">Retry</button>
+    </div>
+  } @else if (filteredIssues().length === 0) {
+    <div class="empty-container">
+      <mat-icon>inbox</mat-icon>
+      <h2>No issues found</h2>
+      <p>{{ getEmptyMessage() }}</p>
+      <button mat-raised-button color="primary" routerLink="/issues/new">
+        Create First Issue
+      </button>
+    </div>
+  } @else {
+    <div class="issues-grid">
+      @for (issue of filteredIssues(); track issue.id) {
+        <mat-card class="issue-card" [routerLink]="['/issues', issue.id]">
+          <mat-card-header>
+            <mat-card-title>{{ issue.title }}</mat-card-title>
+            <mat-card-subtitle>{{ issue.assignee }}</mat-card-subtitle>
+          </mat-card-header>
+          
+          <mat-card-content>
+            <p class="issue-description">{{ getShortDescription(issue.description) }}</p>
+            
+            <div class="issue-meta">
+              <mat-chip-set>
+                <mat-chip [class]="'status-' + issue.status">
+                  {{ getStatusLabel(issue.status) }}
+                </mat-chip>
+                <mat-chip [class]="'priority-' + issue.priority">
+                  {{ getPriorityLabel(issue.priority) }}
+                </mat-chip>
+              </mat-chip-set>
+              
+              <div class="issue-dates">
+                <small>Updated: {{ formatDate(issue.updatedAt) }}</small>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      }
+    </div>
+  }
+</div>

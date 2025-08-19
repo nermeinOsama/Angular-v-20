@@ -1,0 +1,138 @@
+.issue-form-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .form-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .form-header h1 {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 0;
+      color: #0F172A;
+    }
+
+    .loading-container,
+    .error-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .loading-container p,
+    .error-container p {
+      margin: 16px 0;
+      color: #475569;
+    }
+
+    .error-container mat-icon {
+      font-size: 48px;
+      width: 48px;
+      height: 48px;
+      margin-bottom: 16px;
+    }
+
+    .form-card {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .issue-form-card {
+      min-height: 400px; // Adjust as needed
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .form-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .full-width {
+      width: 100%;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      padding-top: 20px;
+      border-top: 1px solid #E2E8F0;
+    }
+
+    .form-actions button {
+      min-width: 120px;
+    }
+
+    .form-actions button[type="submit"] {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .form-actions mat-spinner {
+      margin-right: 8px;
+    }
+
+    /* Focus management */
+    .form-fields mat-form-field:focus-within {
+      outline: 2px solid #1E88E5;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    /* Error states */
+    mat-error {
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    /* Responsive design */
+    @media (max-width: 600px) {
+      .issue-form-container {
+        padding: 16px;
+      }
+
+      .form-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .form-actions {
+        flex-direction: column-reverse;
+        gap: 12px;
+      }
+
+      .form-actions button {
+        width: 100%;
+      }
+    }

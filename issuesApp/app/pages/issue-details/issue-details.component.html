@@ -1,0 +1,113 @@
+<div class="issue-details-container">
+  @if (loading()) {
+    <div class="loading-container">
+      <mat-spinner></mat-spinner>
+      <p>Loading issue details...</p>
+    </div>
+  } @else if (error()) {
+    <div class="error-container">
+      <mat-icon color="warn">error</mat-icon>
+      <h2>Issue Not Found</h2>
+      <p>{{ error() }}</p>
+      <div class="error-actions">
+        <button mat-button color="primary" (click)="goBack()">
+          <mat-icon>arrow_back</mat-icon>
+          Back to Issues
+        </button>
+        <button mat-button color="primary" (click)="retryLoad()">Retry</button>
+      </div>
+    </div>
+  } @else if (issue()) {
+    <div class="issue-content">
+      <header class="issue-header">
+        <div class="header-actions">
+          <button mat-button (click)="goBack()" class="back-btn">
+            <mat-icon>arrow_back</mat-icon>
+            Back to Issues
+          </button>
+          <div class="action-buttons">
+            <button mat-raised-button color="primary" [routerLink]="['/issues', issue()?.id, 'edit']">
+              <mat-icon>edit</mat-icon>
+              Edit Issue
+            </button>
+            <button mat-button color="warn" (click)="confirmDelete()">
+              <mat-icon>delete</mat-icon>
+              Delete
+            </button>
+          </div>
+        </div>
+
+        <div class="issue-title-section">
+          <h1>{{ issue()?.title }}</h1>
+          <div class="issue-badges">
+            <mat-chip-set>
+              <mat-chip [class]="'status-' + (issue()?.status ?? '')">
+                {{ getStatusLabel(issue()?.status ?? '') }}
+              </mat-chip>
+              <mat-chip [class]="'priority-' + (issue()?.priority ?? '')">
+                {{ getPriorityLabel(issue()?.priority ?? '') }}
+              </mat-chip>
+            </mat-chip-set>
+          </div>
+        </div>
+      </header>
+
+      <mat-card class="issue-details-card">
+        <mat-card-content>
+          <div class="details-grid">
+            @if ( issue() && issue()?.description) {
+              <div class="detail-item">
+                <label>Description</label>
+                <div class="description-content">
+                  {{ issue()?.description }}
+                </div>
+              </div>
+            }
+
+            <div class="detail-item">
+              <label>Assignee</label>
+              <div class="assignee-info">
+                <mat-icon>person</mat-icon>
+                {{ issue()?.assignee }}
+              </div>
+            </div>
+
+            <div class="detail-item">
+              <label>Status</label>
+              <mat-chip [class]="'status-' + (issue()?.status ?? '')">
+                {{ getStatusLabel(issue()?.status ?? '') }}
+              </mat-chip>
+            </div>
+
+            <div class="detail-item">
+              <label>Priority</label>
+              <mat-chip [class]="'priority-' + (issue()?.priority ?? '')">
+                {{ getPriorityLabel(issue()?.priority ?? '') }}
+              </mat-chip>
+            </div>
+
+            <div class="detail-item">
+              <label>Created</label>
+              <div class="date-info">
+                <mat-icon>schedule</mat-icon>
+                {{ formatDate(issue()?.createdAt ?? '') }}
+              </div>
+            </div>
+
+            <div class="detail-item">
+              <label>Last Updated</label>
+              <div class="date-info">
+                <mat-icon>update</mat-icon>
+                {{ formatDate(issue()?.updatedAt ?? '') }}
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  }
+
+  <div *ngIf="message()" class="custom-snackbar">
+    {{ message() }}
+  </div>
+</div>

@@ -1,0 +1,213 @@
+.issue-details-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .loading-container,
+    .error-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .loading-container p,
+    .error-container p {
+      margin: 16px 0;
+      color: #475569;
+    }
+
+    .error-container mat-icon {
+      font-size: 48px;
+      width: 48px;
+      height: 48px;
+      margin-bottom: 16px;
+    }
+
+    .error-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .issue-content {
+      animation: fadeIn 0.3s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .issue-header {
+      margin-bottom: 30px;
+    }
+
+    .header-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 12px;
+    }
+
+    .action-buttons button {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .issue-title-section h1 {
+      font-size: 28px;
+      font-weight: bold;
+      margin: 0 0 16px 0;
+      color: #0F172A;
+      line-height: 1.3;
+    }
+
+    .issue-badges {
+      margin-bottom: 8px;
+    }
+
+    .issue-details-card {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .details-grid {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: 1fr;
+    }
+
+    .detail-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .detail-item label {
+      font-weight: 600;
+      color: #374151;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .description-content {
+      background-color: #F8FAFC;
+      padding: 16px;
+      border-radius: 8px;
+      border-left: 4px solid #1E88E5;
+      line-height: 1.6;
+      color: #475569;
+      white-space: pre-wrap;
+    }
+
+    .assignee-info,
+    .date-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #475569;
+    }
+
+    .assignee-info mat-icon,
+    .date-info mat-icon {
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+      color: #64748B;
+    }
+
+    /* Status chips */
+    .status-todo {
+      background-color: #F1F5F9;
+      color: #475569;
+    }
+
+    .status-in_progress {
+      background-color: #FEF3C7;
+      color: #92400E;
+    }
+
+    .status-done {
+      background-color: #D1FAE5;
+      color: #065F46;
+    }
+
+    /* Priority chips */
+    .priority-low {
+      background-color: #F0F9FF;
+      color: #0369A1;
+    }
+
+    .priority-medium {
+      background-color: #FEF3C7;
+      color: #92400E;
+    }
+
+    .priority-high {
+      background-color: #FEE2E2;
+      color: #DC2626;
+    }
+
+    /* Responsive design */
+    @media (max-width: 600px) {
+      .issue-details-container {
+        padding: 16px;
+      }
+
+      .header-actions {
+        flex-direction: column;
+        gap: 16px;
+        align-items: stretch;
+      }
+
+      .action-buttons {
+        justify-content: center;
+      }
+
+      .issue-title-section h1 {
+        font-size: 24px;
+      }
+
+      .details-grid {
+        gap: 20px;
+      }
+    }
+
+    @media (min-width: 600px) {
+      .details-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .detail-item:first-child {
+        grid-column: 1 / -1;
+      }
+    }
+
+    .custom-snackbar {
+      position: fixed;
+      left: 50%;
+      bottom: 32px;
+      transform: translateX(-50%);
+      background: #323232;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 4px;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
